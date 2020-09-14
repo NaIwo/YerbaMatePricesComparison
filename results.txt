@@ -1,0 +1,68 @@
+--------------------
+Total price: 157.7
+Percent of found: 100.0%
+Found products: 
+	-yerba mate pajarito premium despalada : 500g * 1 - 20.39 pln.
+	-yerba mate pajarito hierbas : 500g * 2 - 31.98 pln.
+	-yerba mate pipore terere : 500g * 1 - 21.99 pln.
+	-yerba mate pajarito elaborada : 500g * 6 - 83.34 pln.
+--------------------
+Total price: 169.0
+Percent of found: 100.0%
+Found products: 
+	-pajarito premium despalada : 500g * 1 - 23.0 pln.
+	-aguantadora con hierbas : 500g * 2 - 44.0 pln.
+	-pipore despalada : 500g * 1 - 23.0 pln.
+	-pajarito tradicional : 3000g * 1 - 79.0 pln.
+--------------------
+Total price: 183.6
+Percent of found: 100.0%
+Found products: 
+	-yerba mate pajarito despalada premium : 500g * 1 - 27.9 pln.
+	-yerba mate aguantadora con hierbas : 500g * 2 - 50.0 pln.
+	-yerba mate pipore : 500g * 1 - 22.0 pln.
+	-yerba mate pajarito : 1000g * 3 - 83.7 pln.
+--------------------
+Total price: 191.22
+Percent of found: 100.0%
+Found products: 
+	-yerba mate pajarito premium : 500g * 1 - 23.7 pln.
+	-yerba mate aguantadora compuesta hierbas : 500g * 2 - 42.72 pln.
+	-yerba mate pipore elaborada : 500g * 1 - 19.95 pln.
+	-yerba mate pajarito : 1000g * 3 - 104.85 pln.
+--------------------
+Total price: 243.0
+Percent of found: 100.0%
+Found products: 
+	-pajarito : 500g * 1 - 26.0 pln.
+	-pajarito hierbas naturales : 500g * 2 - 54.0 pln.
+	-pipore con palo hierbas : 500g * 1 - 28.0 pln.
+	-pajarito : 1000g * 3 - 135.0 pln.
+--------------------
+Total price: 142.94
+Percent of found: 75.0%
+Found products: 
+	-pajarito premium despalada : 500g * 1 - 26.99 pln.
+	-pipore : 250g * 2 - 19.98 pln.
+	-pajarito tradicional elaborada : 1000g * 3 - 95.97 pln.
+--------------------
+Total price: 143.4
+Percent of found: 75.0%
+Found products: 
+	-yerba mate aguantadora con hierbas (zio³owa) : 500g * 2 - 51.98 pln.
+	-pipore suave yerba mate : 500g * 1 - 16.42 pln.
+	-yerba mate pajarito elaborada : 1000g * 3 - 75.0 pln.
+--------------------
+Total price: 172.79
+Percent of found: 75.0%
+Found products: 
+	-pajarito premium despalada : 500g * 1 - 19.65 pln.
+	-pajarito compuesta con hierbas : 500g * 2 - 35.24 pln.
+	-pajarito premium despalada : 500g * 6 - 117.9 pln.
+--------------------
+Total price: 223.91
+Percent of found: 75.0%
+Found products: 
+	-pajarito premium despalada : 500g * 1 - 29.99 pln.
+	-pajarito compuesta con hierbas : 500g * 2 - 43.98 pln.
+	-pajarito suave : 500g * 6 - 149.94 pln.
