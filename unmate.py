@@ -1,31 +1,36 @@
 from bs4 import BeautifulSoup
 import re 
+from urllib.parse import urlparse
+import requests
+from operations import Operations
 
 KEY_WORDS = dict()
+KEY_WORDS['box'] = 'product-single--un'
 KEY_WORDS['name'] = "product-single--un-product"
 KEY_WORDS['price'] = 'product-single--un-price-actual'
+KEY_WORDS['category'] = 'product-single--un-category'
+KEY_WORDS['pagination'] = 'pagination--un__item uk-margin-remove'
+
+
 
 def unmate(websites):
-    final = []
-    for result, weight, user_name in websites:
+    final = list()
+    operation = Operations()
+
+    for url, _, user_name in websites:
+        result = operation.get_response(url, user_name)
+        if result is None:
+            return []
+
         soup = BeautifulSoup(result, 'html.parser')
-        names = soup.find_all("a", class_ = KEY_WORDS['name'])
-        prices = soup.find_all("span", class_ = KEY_WORDS['price'])
-        for name, price in zip(names, prices):
-            try:
-                local_weight = int(re.sub('[^0-9]', '', name.text))
-                if re.search(r"\d+ *kg", name.text.lower()) is not None:
-                    local_weight = local_weight * 1000
-                
-                local_name = name.text.lower()
-                indexes = re.search(r"\d", local_name)
-                local_name = local_name[:indexes.start()].split()
+        count = operation.get_count(soup, 1, KEY_WORDS['pagination'])
+        
+        for i in range(1, count):
+            local_url = url + '&page=' + str(i)
 
-                local_price = float(re.sub("[,]", '.', re.sub("[^0-9,]", "", price.text)))
+            result = requests.get(local_url).content
+            soup = BeautifulSoup(result, 'html.parser')
+            items = soup.find_all('article', class_ = KEY_WORDS['box'])
 
-                matching = len(list(set(local_name).intersection(user_name)))
-                if  matching >= len(user_name):
-                    final.append([local_name, local_weight, local_price])
-            except:
-                pass
+            final += operation.find(items, user_name, ['a', 'span'], KEY_WORDS) 
     return final

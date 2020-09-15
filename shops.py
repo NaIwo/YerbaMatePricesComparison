@@ -28,20 +28,7 @@ class Shops():
             print('\t-' + result)
         return big_string
 
-    def get_expenses(self):
-
-        requests_tab = list()
-        
-        for name, weight in self.products:
-            local_url = self.url +  '+'.join(name) + self.postfix
-            try:
-                request = requests.get(local_url).content
-                requests_tab.append((request, weight, name))
-            except:
-                parsed_uri = urlparse(self.url)
-                shop = '{uri.scheme}://{uri.netloc}/'.format(uri=parsed_uri)
-                print('Something went wrong with \'{}\' product on \'{}\' :('.format(' '.join(name), shop[8:-1]))
-
+    def get_results(self, requests_tab):
         if requests_tab is not None:
             results = self.func(requests_tab)
             if results is not None:
@@ -50,6 +37,25 @@ class Shops():
                 
                 self.percent = items_find / len(self.products) * 100
                 self.results, self.price = results, price
+
+    def get_expenses(self):
+
+        requests_tab = list()
+        
+        for name, weight in self.products:
+            local_url = self.url +  '+'.join(name) + self.postfix
+            try:
+                request = requests.get(local_url).content
+                if self.name == 'unmate' or self.name == 'matemundo' or self.name == 'dobreziele' or self.name == 'herbatkowo' or self.name == 'poyerbani' or self.name == 'ymt24':
+                    requests_tab.append((local_url, weight, name))
+                else:
+                    requests_tab.append((request, weight, name))
+            except:
+                parsed_uri = urlparse(self.url)
+                shop = '{uri.scheme}://{uri.netloc}/'.format(uri=parsed_uri)
+                print('Something went wrong with \'{}\' product on \'{}\' :('.format(' '.join(name), shop[8:-1]))
+
+        self.get_results(requests_tab)
                 
     def get_min_prices(self, inputs):
         price = 0.0

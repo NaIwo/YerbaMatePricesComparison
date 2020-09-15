@@ -1,30 +1,58 @@
 from bs4 import BeautifulSoup
 import re 
+import requests
+from operations import Operations
 
 KEY_WORDS = dict()
 KEY_WORDS['name'] = "productname"
 KEY_WORDS['price'] = 'price f-row'
+KEY_WORDS['box'] = 'product-inner-wrap'
+KEY_WORDS['pagination'] = 'paginator'
+
+def get_count(soup, counter):
+    try:
+        ul = soup.find('ul', class_= KEY_WORDS['pagination']).find_all('li')[-2]
+        return int(ul.text) + counter
+    except:
+        return counter + 1
+
+def find(items, user_name, operation):
+        out = list()
+        for item in items:
+            name = item.find('span', class_ = KEY_WORDS['name'])
+            price = item.find('div', class_ = KEY_WORDS['price'])
+
+            local_weight = operation.get_weight(name.text.lower())
+                        
+            local_name = operation.get_name(name.text.lower())
+
+            local_price = operation.get_price(price.find('em').text.lower())
+            
+
+            matching = len(list(set(local_name).intersection(user_name)))
+            if  matching >= len(user_name):
+                out.append([local_name, local_weight, local_price])
+        return out
 
 def ymt24(websites):
-    final = []
-    for result, weight, user_name in websites:
-        soup = BeautifulSoup(result, 'html.parser')
-        names = soup.find_all("span", class_ = KEY_WORDS['name'])
-        prices = soup.find_all("div", class_ = KEY_WORDS['price'])
-        for name, price in zip(names, prices):
-            try:
-                local_weight = int(re.sub('[^0-9]', '', name.text.lower()))
-                if re.search(r"\d+ *kg", name.text.lower()) is not None:
-                    local_weight = local_weight * 1000
-                
-                local_name = name.text.lower()
-                indexes = re.search(r"\d", local_name)
-                local_name = local_name[:indexes.start()].split()
+    final = list()
+    operation = Operations()
 
-                local_price = float(re.sub("[,]", '.', re.sub("[^0-9,]", "", price.findChildren()[1].text)))
-                matching = len(list(set(local_name).intersection(user_name)))
-                if  matching >= len(user_name):
-                    final.append([local_name, local_weight, local_price])
-            except:
-                pass
+    for url, _, user_name in websites:
+        result = operation.get_response(url, user_name)
+        if result is None:
+            return []
+
+        soup = BeautifulSoup(result, 'html.parser')
+        count = get_count(soup, 1)
+
+        for i in range(1, count):
+            local_url = url + '/' + str(i)
+
+            result = requests.get(local_url).content
+            soup = BeautifulSoup(result, 'html.parser')
+            items = soup.find_all('div', class_ = KEY_WORDS['box'])
+
+            final += find(items, user_name, operation)
+
     return final
