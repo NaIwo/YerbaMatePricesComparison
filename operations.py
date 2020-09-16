@@ -14,9 +14,9 @@ class Operations():
                 ' '.join(name), shop[8:-1]))
             return None
 
-    def get_count(self, soup, counter, pagination):
+    def get_count(self, soup, counter, pagination, tag = 'li', num = -1):
         try:
-            return int(soup.find_all('li', class_= pagination)[-1].text) + counter
+            return int(soup.find_all(tag, class_= pagination)[num].text) + counter
         except:
             return counter + 1
 
@@ -28,8 +28,9 @@ class Operations():
             return local_weight
         except IndexError:
             return 0.0
-        except:
-            print(re.sub("[,]", '.', re.sub("[^0-9,]", "", name)))
+        except ValueError:
+            return 0.0
+        
 
     def get_name(self, local_name):
         try:
@@ -37,7 +38,7 @@ class Operations():
             local_name = local_name[:indexes.start()].split()
             return local_name
         except AttributeError:
-            return local_name
+            return local_name.split()
 
     def get_price(self, price):
         try:
@@ -60,12 +61,10 @@ class Operations():
 
             if title:
                 local_weight = self.get_weight(name.get('title').lower())
-                        
                 local_name = self.get_name(name.get('title').lower())
 
             else:
                 local_weight = self.get_weight(name.text.lower())
-                        
                 local_name = self.get_name(name.text.lower())
 
             local_price = self.get_price(price.text)

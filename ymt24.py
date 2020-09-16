@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import re 
-import requests
 from operations import Operations
 
 KEY_WORDS = dict()
@@ -22,10 +21,8 @@ def find(items, user_name, operation):
             name = item.find('span', class_ = KEY_WORDS['name'])
             price = item.find('div', class_ = KEY_WORDS['price'])
 
-            local_weight = operation.get_weight(name.text.lower())
-                        
+            local_weight = operation.get_weight(name.text.lower()) 
             local_name = operation.get_name(name.text.lower())
-
             local_price = operation.get_price(price.find('em').text.lower())
             
 
@@ -38,7 +35,7 @@ def ymt24(websites):
     final = list()
     operation = Operations()
 
-    for url, _, user_name in websites:
+    for url, user_name in websites:
         result = operation.get_response(url, user_name)
         if result is None:
             return []
@@ -49,7 +46,7 @@ def ymt24(websites):
         for i in range(1, count):
             local_url = url + '/' + str(i)
 
-            result = requests.get(local_url).content
+            result = operation.get_response(local_url, user_name)
             soup = BeautifulSoup(result, 'html.parser')
             items = soup.find_all('div', class_ = KEY_WORDS['box'])
 

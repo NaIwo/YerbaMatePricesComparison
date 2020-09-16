@@ -15,7 +15,7 @@ class Shops():
 
     def print_information(self):
         big_string = ''
-        big_string += '-' * 20  + '\nTotal price: {}'.format(self.price) + '\nPercent of found: {0:.{1}f}%'.format(self.percent, 1) + '\nFound products: \n'
+        big_string += '-' * 20  + '\n' +self.name + ':\nTotal price: {}'.format(self.price) + '\nPercent of found: {0:.{1}f}%'.format(self.percent, 1) + '\nFound products: \n'
         for result in self.results:
             big_string += '\t-{}\n'.format(result)
 
@@ -29,68 +29,66 @@ class Shops():
         return big_string
 
     def get_results(self, requests_tab):
-        if requests_tab is not None:
-            results = self.func(requests_tab)
-            if results is not None:
-                results = self.remove_banned_words(results)
-                results, price, items_find = self.get_min_prices(results)
-                
-                self.percent = items_find / len(self.products) * 100
-                self.results, self.price = results, price
+        results = self.func(requests_tab)
+        if results is not None:
+            results = self.remove_banned_words(results)
+            results, price, items_found = self.get_min_prices(results)
+            self.percent = items_found / len(self.products) * 100
+            self.results, self.price = results, price
 
     def get_expenses(self):
-
         requests_tab = list()
         
         for name, weight in self.products:
             local_url = self.url +  '+'.join(name) + self.postfix
-            try:
-                request = requests.get(local_url).content
-                if self.name == 'unmate' or self.name == 'matemundo' or self.name == 'dobreziele' or self.name == 'herbatkowo' or self.name == 'poyerbani' or self.name == 'ymt24':
-                    requests_tab.append((local_url, weight, name))
-                else:
-                    requests_tab.append((request, weight, name))
-            except:
-                parsed_uri = urlparse(self.url)
-                shop = '{uri.scheme}://{uri.netloc}/'.format(uri=parsed_uri)
-                print('Something went wrong with \'{}\' product on \'{}\' :('.format(' '.join(name), shop[8:-1]))
+            requests_tab.append((local_url, name))
 
         self.get_results(requests_tab)
                 
-    def get_min_prices(self, inputs):
-        price = 0.0
-        results = list()
-        items_find = 0
-        
-        for product in self.products:
-            max_el = None
-            length = 100
-            maxMatch = 0
-            for inp in inputs:
+
+    def find_element(self, product, inputs):
+        max_el = None
+        length = 100
+        maxMatch = 0
+        for inp in inputs:
+            try:
                 matching = len(list(set(inp[0]).intersection(product[0])))
-                if matching != 0:
-                    if matching > maxMatch and int(product[1]) % int(inp[1]) == 0:
+                if matching == 0 or inp == []:
+                    continue
+                if matching > maxMatch and float(product[1]) % float(inp[1]) == 0:
+                    maxMatch = matching
+                    max_el = inp
+                    length = len(inp[0])
+                elif matching == maxMatch and float(product[1]) % float(inp[1]) == 0:
+                    if (int(product[1]) / int(inp[1])) * float(inp[2]) < (int(product[1]) / int(max_el[1])) * float(max_el[2]):
                         maxMatch = matching
                         max_el = inp
                         length = len(inp[0])
-                    elif matching == maxMatch and int(product[1]) % int(inp[1]) == 0:
-                        if len(inp[0]) < length:
-                            maxMatch = matching
-                            max_el = inp
-                            length = len(inp[0])
-                        elif (int(product[1]) / int(inp[1])) * float(inp[2]) < (int(product[1]) / int(max_el[1])) * float(max_el[2]):
-                            maxMatch = matching
-                            max_el = inp
-                            length = len(inp[0])
-            
+                    elif len(inp[0]) < length and (int(product[1]) / int(inp[1])) * float(inp[2]) == (int(product[1]) / int(max_el[1])) * float(max_el[2]):
+                        maxMatch = matching
+                        max_el = inp
+                        length = len(inp[0])
+            except ZeroDivisionError:
+                continue
+        return max_el
+
+
+    def get_min_prices(self, inputs):
+        price = 0.0
+        results = list()
+        items_found = 0
+        for product in self.products:
+
+            max_el = self.find_element(product, inputs)
+
             if max_el is not None:
-                items_find += 1
+                items_found += 1
                 times = int(int(product[1]) / int(max_el[1]))
                 price += times * float(max_el[2])
                 result = '{} : {}g * {} - {} pln.'.format(' '.join(max_el[0]), int(max_el[1]), times, round(times * max_el[2], 2))
                 results.append(result)        
             
-        return results, round(price, 2), items_find
+        return results, round(price, 2), items_found
 
 
 

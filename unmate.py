@@ -1,7 +1,5 @@
 from bs4 import BeautifulSoup
 import re 
-from urllib.parse import urlparse
-import requests
 from operations import Operations
 
 KEY_WORDS = dict()
@@ -16,11 +14,11 @@ KEY_WORDS['pagination'] = 'pagination--un__item uk-margin-remove'
 def unmate(websites):
     final = list()
     operation = Operations()
-
-    for url, _, user_name in websites:
+    
+    for url, user_name in websites:
         result = operation.get_response(url, user_name)
         if result is None:
-            return []
+            continue
 
         soup = BeautifulSoup(result, 'html.parser')
         count = operation.get_count(soup, 1, KEY_WORDS['pagination'])
@@ -28,7 +26,7 @@ def unmate(websites):
         for i in range(1, count):
             local_url = url + '&page=' + str(i)
 
-            result = requests.get(local_url).content
+            result = operation.get_response(local_url, user_name)
             soup = BeautifulSoup(result, 'html.parser')
             items = soup.find_all('article', class_ = KEY_WORDS['box'])
 

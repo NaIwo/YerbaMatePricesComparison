@@ -1,7 +1,5 @@
 from bs4 import BeautifulSoup
 import re 
-from urllib.parse import urlparse
-import requests
 from operations import Operations
 
 KEY_WORDS = dict()
@@ -14,7 +12,7 @@ KEY_WORDS['box'] = 'product col-12 col-sm-4 col-md-3 pt-3 pb-md-3 mb-3 mb-sm-0'
 def poyerbani(websites):
     final = list()
     operation = Operations()
-    for url, _, user_name in websites:
+    for url, user_name in websites:
         result = operation.get_response(url, user_name)
         if result is None:
             return []
@@ -22,16 +20,13 @@ def poyerbani(websites):
         soup = BeautifulSoup(result, 'html.parser')
         count = operation.get_count(soup, 0, KEY_WORDS['pagination'])
         if count == 1:
-            local_url = url
-            result = requests.get(local_url).content
-            soup = BeautifulSoup(result, 'html.parser')
             items = soup.find_all('div', class_ = KEY_WORDS['box'])
 
             final += operation.find(items, user_name, ['a', 'strong'], KEY_WORDS)
         else:
             for i in range(0, count):
-                local_url = url + '?counter=' + str(i)
-                result = requests.get(local_url).content
+                local_url = url + '&counter=' + str(i)
+                result = operation.get_response(local_url, user_name)
                 soup = BeautifulSoup(result, 'html.parser')
                 items = soup.find_all('div', class_ = KEY_WORDS['box'])
 

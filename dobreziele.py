@@ -1,7 +1,5 @@
 from bs4 import BeautifulSoup
 import re
-from urllib.parse import urlparse
-import requests
 from operations import Operations
 
 KEY_WORDS = dict()
@@ -29,7 +27,7 @@ def get_weight(name):
 def dobreziele(websites):
     final = list()
     operation = Operations()
-    for url, _, user_name in websites:
+    for url, user_name in websites:
 
         result = operation.get_response(url, user_name)
         if result is None:
@@ -44,7 +42,7 @@ def dobreziele(websites):
 
             local_weight = get_weight(name)
             local_name = operation.get_name(name.lower())
-            local_price = float(re.sub("[,]", '.', re.sub("[^0-9,]", "", price.text)))
+            local_price = operation.get_price(price.text)
 
             matching = len(list(set(local_name).intersection(user_name)))
             if matching >= len(user_name):
