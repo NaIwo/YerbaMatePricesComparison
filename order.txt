@@ -1,4 +1,3 @@
 pajarito 500
-AGUANTADORA 500
-pajarito organica 500
-palidici 500
+aguantadora 500
+pajarito organica 1000

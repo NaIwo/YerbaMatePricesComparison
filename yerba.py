@@ -2,6 +2,7 @@ import re
 from shops import Shops
 import threading
 import sys
+import os
 from unmate import *
 from ymt24 import *
 from matemundo import *
@@ -11,20 +12,60 @@ from herbatkowo import *
 from yerbamarket import *
 from yerbanot import *
 from yerbamatestore import *
+import pandas as pd
+from Levenshtein import Levenshtein_distance
+from operations import Operations
+from addToCsv import add_to_csv
 
 ORDER = 'order.txt'
 BANNED_WORDS = 'ban_words.txt'
 RESULTS = 'results.txt'
+DATASET_CSV = 'YerbaMataDataset.csv'
+
+def read_dataset(wd):
+    return pd.read_csv(os.path.join(wd, DATASET_CSV)).iloc[1:,1]
+
+def ask_user(name, user_name):
+    answer = input('Do you had mind \'{}\' instead of \'{}\'? (y/n):  '.format(name, user_name))
+    if answer == 'y':
+        return True
+    else:
+        answer = input('Do you want to add to database \'{}\'? (y/n):  '.format(user_name))
+        if answer == 'y':
+            add_to_csv(user_name)
+        return False
+
+def check_correctness(name, dataset):
+    minimum = float('inf')
+    name = ' '.join(name)
+    final_name = name
+    border = 8
+    for data in dataset:
+        temp = Levenshtein_distance(name, data)
+        if temp < minimum and temp < border:
+            if len(name.split()) >= len(data.split()):
+                minimum = temp
+                final_name = data
+    if len(list(set(name.split()).intersection(final_name.split()))) == len(name.split()):
+        return name.split()
+
+    if ask_user(final_name, name):
+        return final_name.split()
+    else:
+        return name.split()
 
 
 def read_product():
     products = list()
+    dataset = read_dataset(os.getcwd())
+    operation = Operations()
     with open(ORDER) as file:
         temp = [line.lower().strip().rstrip('\n') for line in file]
     for product in temp:
-        name = product.split()[:-1]
-        weight = product.split()[-1]
-        weight = re.sub("[^0-9]", "", weight)
+        name = operation.get_name(product)
+        name = check_correctness(name, dataset)
+
+        weight = operation.get_weight(product)
         products.append((name, weight))
     return products
 
@@ -72,4 +113,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-    #input("\n\nPress any button to continue...") 
+    input("\n\nPress any button to continue...") 

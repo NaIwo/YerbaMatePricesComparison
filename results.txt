@@ -1,68 +1,60 @@
 --------------------
 ymt24:
-Total price: 57.97
-Percent of found: 75.0%
+Total price: 85.96
+Percent of found: 100.0%
 Found products: 
 	-yerba mate pajarito menta limon : 500g * 1 - 14.49 pln.
 	-yerba mate aguantadora compuesta : 500g * 1 - 15.49 pln.
-	-yerba mate pajarito organica : 500g * 1 - 27.99 pln.
+	-yerba mate pajarito organica : 500g * 2 - 55.98 pln.
 --------------------
 unmate:
-Total price: 64.97
-Percent of found: 75.0%
+Total price: 92.96
+Percent of found: 100.0%
 Found products: 
 	-pajarito suave : 500g * 1 - 20.99 pln.
 	-aguantadora energia : 500g * 1 - 15.99 pln.
-	-pajarito organica : 500g * 1 - 27.99 pln.
+	-pajarito organica : 500g * 2 - 55.98 pln.
 --------------------
 dobreziele:
-Total price: 66.0
-Percent of found: 75.0%
+Total price: 93.0
+Percent of found: 100.0%
 Found products: 
 	-pajarito tradicional : 500g * 1 - 19.0 pln.
 	-aguantadora con palo : 500g * 1 - 20.0 pln.
-	-pajarito organica : 500g * 1 - 27.0 pln.
---------------------
-yerbamatestore:
-Total price: 67.76
-Percent of found: 75.0%
-Found products: 
-	-yerba mate pajarito cytrynowo - miêtowa : 500g * 1 - 17.95 pln.
-	-yerba mate aguantadora compuesta hierbas : 500g * 1 - 21.36 pln.
-	-yerba mate pajarito organica : 500g * 1 - 28.45 pln.
+	-pajarito organica : 500g * 2 - 54.0 pln.
 --------------------
 herbatkowo:
-Total price: 71.8
-Percent of found: 75.0%
+Total price: 99.7
+Percent of found: 100.0%
 Found products: 
 	-yerba mate pajarito : 500g * 1 - 21.0 pln.
 	-yerba mate aguantadora : 500g * 1 - 22.9 pln.
-	-yerba mate pajarito organica : 500g * 1 - 27.9 pln.
+	-yerba mate pajarito organica : 500g * 2 - 55.8 pln.
 --------------------
 yerbanot:
-Total price: 80.0
-Percent of found: 75.0%
+Total price: 111.0
+Percent of found: 100.0%
 Found products: 
 	-pajarito : 500g * 1 - 26.0 pln.
 	-aguantadora : 500g * 1 - 23.0 pln.
-	-pajarito organica : 500g * 1 - 31.0 pln.
+	-pajarito organica : 500g * 2 - 62.0 pln.
 --------------------
 matemundo:
-Total price: 44.24
-Percent of found: 50.0%
+Total price: 73.84
+Percent of found: 66.7%
 Found products: 
 	-pajarito elaborada con palo tradicional : 500g * 1 - 14.64 pln.
-	-pajarito organica : 500g * 1 - 29.6 pln.
+	-pajarito organica : 500g * 2 - 59.2 pln.
 --------------------
 poyerbani:
-Total price: 49.89
-Percent of found: 50.0%
+Total price: 79.79
+Percent of found: 66.7%
 Found products: 
 	-pajarito elaborada con palo tradicional : 500g * 1 - 19.99 pln.
-	-pajarito organica : 500g * 1 - 29.9 pln.
+	-pajarito organica : 500g * 2 - 59.8 pln.
 --------------------
 yerbamarket:
 Total price: 24.59
-Percent of found: 25.0%
+Percent of found: 33.3%
 Found products: 
 	-yerba mate aguantadora tradicional : 500g * 1 - 24.59 pln.
