@@ -7,23 +7,6 @@ KEY_WORDS['name'] = 'shop-item'
 KEY_WORDS['price'] = 'price'
 
 
-
-def get_weight(name):
-    regex = re.findall(r"[0-9]+ ?[x]? ?[0-9]*", name)
-    try:
-        if regex[0].find('x') != -1:
-            index = regex[0].find('x')
-            local_weight = float(regex[0][:index-1]) * int(regex[0][index + 2:])
-        else:
-            local_weight = float(regex[0])
-
-        if re.search(r"\d+ *kg", name.lower()) is not None:
-            local_weight = local_weight * 1000
-        return local_weight
-    except IndexError:
-        return 0.0
-
-
 def dobreziele(websites):
     final = list()
     operation = Operations()
@@ -40,7 +23,7 @@ def dobreziele(websites):
             name = item.find('a', href=True).get('title')
             price = item.find("span", class_=KEY_WORDS['price'])
 
-            local_weight = get_weight(name)
+            local_weight = operation.get_weight(name.lower(), with_regex = True)
             local_name = operation.get_name(name.lower())
             local_price = operation.get_price(price.text)
 

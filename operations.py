@@ -20,9 +20,29 @@ class Operations():
         except:
             return counter + 1
 
-    def get_weight(self, name):
+    def get_weight_function(self, with_regex):
+        def get_weight_no_regex(name):
+            return float(re.sub("[,]", '.', re.sub("[^0-9,]", "", name)))
+
+        def get_weight_regex(name):
+            regex = re.findall(r"[0-9]+,?[0-9]* ?[x]? ?[0-9]*", name)
+            if regex[0].find('x') != -1:
+                index = regex[0].find('x')
+                local_weight = float(re.sub("[,]", '.', re.sub("[^0-9,]", "", regex[0][:index-1]))) * int(regex[0][index + 2:])
+            else:
+                local_weight = float(re.sub("[,]", '.', re.sub("[^0-9,]", "", regex[0])))
+            return local_weight
+
+        if with_regex:
+            return get_weight_regex
+        else:
+            return get_weight_no_regex
+
+
+    def get_weight(self, name, with_regex = False):
         try:
-            local_weight = float(re.sub("[,]", '.', re.sub("[^0-9,]", "", name)))
+            func = self.get_weight_function(with_regex)
+            local_weight = func(name)
             if re.search(r"\d+ *kg", name) is not None:
                 local_weight = local_weight * 1000
             return local_weight

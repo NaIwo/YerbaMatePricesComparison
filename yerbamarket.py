@@ -16,24 +16,6 @@ def get_count(soup, counter):
     except:
         return counter + 1
 
-def get_weight(name):
-    try:
-        regex = re.findall(r"[0-9]+,?[0-9]* ?[x]? ?[0-9]*", name)
-        if regex[0].find('x') != -1:
-            index = regex[0].find('x')
-            local_weight = float(regex[0][:index-1]) * float(regex[0][index + 2:])
-        else:
-            local_weight = float(regex[0])
-
-        if re.search(r"\d+ *kg", name) is not None:
-            local_weight = local_weight * 1000.0
-        return local_weight
-
-    except IndexError:
-        return 0.0
-    except ValueError:
-        return 0.0
-
 def find(items, operation, user_name):
     out = list()
     for item in items:
@@ -57,7 +39,7 @@ def find(items, operation, user_name):
                             
         #if size appear only in product name
         else:
-            local_weight = get_weight(name.text.lower())
+            local_weight = operation.get_weight(name.text.lower(), with_regex = True)
             local_name = operation.get_name(name.text.lower())
             local_price = operation.get_price(price.text)
 
