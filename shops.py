@@ -55,16 +55,13 @@ class Shops():
                 matching = len(list(set(inp[0]).intersection(product[0])))
                 if matching == 0 or inp == []:
                     continue
+
                 if matching > maxMatch and float(product[1]) % float(inp[1]) == 0:
                     maxMatch = matching
                     max_el = inp
                     length = len(inp[0])
-                elif matching == maxMatch and float(product[1]) % float(inp[1]) == 0:
+                elif matching == maxMatch and float(product[1]) % float(inp[1]) == 0 and len(inp[0]) <= length:
                     if (int(product[1]) / int(inp[1])) * float(inp[2]) < (int(product[1]) / int(max_el[1])) * float(max_el[2]):
-                        maxMatch = matching
-                        max_el = inp
-                        length = len(inp[0])
-                    elif len(inp[0]) < length and (int(product[1]) / int(inp[1])) * float(inp[2]) == (int(product[1]) / int(max_el[1])) * float(max_el[2]):
                         maxMatch = matching
                         max_el = inp
                         length = len(inp[0])

@@ -1,68 +1,63 @@
 --------------------
-ymt24:
-Total price: 149.46
-Percent of found: 100.0%
-Found products: 
-	-yerba mate pajarito elaborada : 3000g * 1 - 77.99 pln.
-	-yerba mate aguantadora compuesta : 500g * 1 - 15.49 pln.
-	-yerba mate pajarito organica : 500g * 2 - 55.98 pln.
---------------------
 dobreziele:
-Total price: 153.0
+Total price: 85.0
 Percent of found: 100.0%
 Found products: 
-	-pajarito tradicional : 3000g * 1 - 79.0 pln.
-	-aguantadora con palo : 500g * 1 - 20.0 pln.
-	-pajarito organica : 500g * 2 - 54.0 pln.
+	-la rubia organica : 500g * 1 - 29.0 pln.
+	-canarias : 1000g * 1 - 36.0 pln.
+	-taragui con palo : 500g * 1 - 20.0 pln.
 --------------------
 unmate:
-Total price: 167.94
+Total price: 85.97
 Percent of found: 100.0%
 Found products: 
-	-pajarito tradicional elaborada : 1000g * 3 - 95.97 pln.
-	-aguantadora energia : 500g * 1 - 15.99 pln.
-	-pajarito organica : 500g * 2 - 55.98 pln.
+	-la rubia organica : 500g * 1 - 29.99 pln.
+	-canarias : 1000g * 1 - 39.99 pln.
+	-taragui energia : 500g * 1 - 15.99 pln.
 --------------------
-yerbamatestore:
-Total price: 183.11
+ymt24:
+Total price: 89.97
 Percent of found: 100.0%
 Found products: 
-	-yerba mate pajarito : 1000g * 3 - 104.85 pln.
-	-yerba mate aguantadora compuesta hierbas : 500g * 1 - 21.36 pln.
-	-yerba mate pajarito organica : 500g * 2 - 56.9 pln.
---------------------
-herbatkowo:
-Total price: 204.7
-Percent of found: 100.0%
-Found products: 
-	-yerba mate pajarito : 500g * 6 - 126.0 pln.
-	-yerba mate aguantadora : 500g * 1 - 22.9 pln.
-	-yerba mate pajarito organica : 500g * 2 - 55.8 pln.
---------------------
-yerbanot:
-Total price: 220.0
-Percent of found: 100.0%
-Found products: 
-	-pajarito : 1000g * 3 - 135.0 pln.
-	-aguantadora : 500g * 1 - 23.0 pln.
-	-pajarito organica : 500g * 2 - 62.0 pln.
---------------------
-matemundo:
-Total price: 136.9
-Percent of found: 66.7%
-Found products: 
-	-pajarito elaborada con palo tradicional : 1000g * 3 - 77.7 pln.
-	-pajarito organica : 500g * 2 - 59.2 pln.
+	-yerba mate la rubia especial organica : 500g * 1 - 31.99 pln.
+	-yerba mate canarias elaborada : 1000g * 1 - 39.99 pln.
+	-yerba mate taragui energia : 500g * 1 - 17.99 pln.
 --------------------
 poyerbani:
-Total price: 137.5
+Total price: 39.97
 Percent of found: 66.7%
 Found products: 
-	-pajarito elaborada con palo tradicional : 1000g * 3 - 77.7 pln.
-	-pajarito organica : 500g * 2 - 59.8 pln.
+	-la rubia elaborada con palo tradicional : 500g * 1 - 26.99 pln.
+	-taragui liviana : 500g * 1 - 12.98 pln.
+--------------------
+matemundo:
+Total price: 41.1
+Percent of found: 66.7%
+Found products: 
+	-la rubia elaborada con palo tradicional : 500g * 1 - 26.36 pln.
+	-taragui energia : 500g * 1 - 14.74 pln.
+--------------------
+herbatkowo:
+Total price: 57.9
+Percent of found: 66.7%
+Found products: 
+	-yerba mate la rubia especial organica : 500g * 1 - 35.0 pln.
+	-yerba mate taragui energia : 500g * 1 - 22.9 pln.
 --------------------
 yerbamarket:
-Total price: 24.59
+Total price: 59.88
+Percent of found: 66.7%
+Found products: 
+	-canarias yerba mate : 1000g * 1 - 29.99 pln.
+	-yerba mate taragui energia : 500g * 1 - 29.89 pln.
+--------------------
+yerbanot:
+Total price: 29.0
 Percent of found: 33.3%
 Found products: 
-	-yerba mate aguantadora tradicional : 500g * 1 - 24.59 pln.
+	-taragui cytrus : 500g * 1 - 29.0 pln.
+--------------------
+yerbamatestore:
+Total price: 0.0
+Percent of found: 0.0%
+Found products: 

@@ -25,7 +25,10 @@ def dobreziele(websites):
 
             local_weight = operation.get_weight(name.lower(), with_regex = True)
             local_name = operation.get_name(name.lower())
-            local_price = operation.get_price(price.text)
+
+            for child in price.find_all("span"):
+                child.decompose()
+            local_price = operation.get_price(price.get_text())
 
             matching = len(list(set(local_name).intersection(user_name)))
             if matching >= len(user_name):
